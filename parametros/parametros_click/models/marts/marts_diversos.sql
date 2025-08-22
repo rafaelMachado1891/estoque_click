@@ -105,12 +105,12 @@ SELECT
         grupo,
         estoque_minimo,
         tempo_reposicao,
-        ROUND(media_mensal / 22 * tempo_reposicao + (1 * desvio_padrao_mensal),0) AS calculo_estoque,
+        ROUND(media_mensal / 22 * tempo_reposicao + (1.5 * desvio_padrao_mensal),0) AS calculo_estoque,
         media_mensal,
         media_movel_3_meses,
         media_movel_6_meses,
         CASE WHEN 
-            media_mensal/ 22 * tempo_reposicao + (1*desvio_padrao_mensal) > 
+            media_mensal/ 22 * tempo_reposicao + (1.5*desvio_padrao_mensal) > 
             estoque_minimo THEN 'estoque minimo abaixo do recomendado' 
 		ELSE 'estoque minimo acima do recomendado'
 		END AS observacao
