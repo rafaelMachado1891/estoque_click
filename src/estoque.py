@@ -1,4 +1,8 @@
 import pandas as pd
+from sqlalchemy import create_engine, text
+import os
+from dotenv import load_dotenv
+from urllib.parse import quote_plus
 
 
 caminho = "movimento_estoque_click.csv"
@@ -11,25 +15,25 @@ df['total_movimento'] = df['total_movimento'].str.replace(',', '.').astype(float
 tipo_dados = {
     'codigo': str,
     'descricao': str,
-    'Data_Baixa': str, #'datetime64[ns]',
+    'data_baixa':'datetime64[ns]',
     'mes': int,
     'ano': int,
     'total_movimento': int,
-    'grupo': str  
-    #'estoque_minimo': int,
-    #'tempo_reposicao': int
+    'grupo': str,
+    'estoque_minimo': int,
+    'tempo_reposicao': int
 }
 
 df = df.astype(tipo_dados)
 
-selecao_colunas = ["codigo", "descricao" ,"Data_Baixa", "total_movimento", "grupo" ] #"estoque_minimo",  "tempo_reposicao"
+selecao_colunas = ["codigo", "descricao" ,"data_baixa", "total_movimento", "grupo", "estoque_minimo", "tempo_reposicao" ]
 
 df = df[selecao_colunas]
 selecao = df.copy()
 
 agregacao_mensal = df.copy()
 
-agregacao_mensal['mes_ano'] = agregacao_mensal['Data_Baixa'].dt.to_period('M')
+agregacao_mensal['mes_ano'] = agregacao_mensal['data_baixa'].dt.to_period('M')
 
 agregacao_mensal['mes_ano'] = agregacao_mensal['mes_ano'].dt.to_timestamp()
 
@@ -64,6 +68,8 @@ agregacao = selecao.groupby(by=['codigo'],as_index=False).agg(
 selecao = agregacao
 
 # conexao com o banco de dados de destino
+
+load_dotenv()
 
 USERNAME_POSTGRE = os.getenv("USER_POSTGRES")
 PASSWORD_POSTGRE = quote_plus(os.getenv("PASSWORD_POSTGRES"))

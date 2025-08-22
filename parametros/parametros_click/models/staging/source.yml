@@ -1,0 +1,12 @@
+
+version: 2
+
+sources:
+  - name: parametros_click_db
+    database: "parametros_click_db"
+    schema: public
+    tables:
+      - name: MOVIMENTO
+      - name: ESTATISTICAS_DIA
+      - name: ESTATISTICAS_MENSAL
+      

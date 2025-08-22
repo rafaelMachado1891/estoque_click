@@ -1,0 +1,26 @@
+name: 'parametros_click'
+version: '1.0.0'
+
+profile: 'parametros_click'
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         
+  - "target"
+  - "dbt_packages"
+
+models:
+  parametros:
+    # Config indicated by + and applies to all files under models/example/
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table

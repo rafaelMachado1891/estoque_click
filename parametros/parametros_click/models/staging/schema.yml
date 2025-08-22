@@ -1,0 +1,26 @@
+
+version: 2
+
+models:
+  - name: stg_movimento
+    description: "tabela que contêm as movimentações dos produtos"
+    columns:
+      - name: "codigo"
+        description: "id unico dos produtos"
+        data_tests:
+          - not_null
+      - name: "descricao"
+        decription: "nomenclatura do produto"
+        data_tests: 
+          - not_null
+      - name: "data_baixa"
+        description: "data da movimentação do item"
+        data_tests:
+          - not_null
+      - name: "quantidade"
+        description: "quantidade movimentada"
+        data_tests:
+          - not_null
+      - name: "grupo"
+        description: "categoria/grupo que o produto pertence"
+  

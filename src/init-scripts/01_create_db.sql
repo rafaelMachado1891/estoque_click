@@ -1,0 +1,1 @@
+CREATE DATABASE parametros_click_db;
