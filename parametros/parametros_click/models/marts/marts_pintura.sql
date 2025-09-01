@@ -129,9 +129,10 @@ querycompleta AS (
             ELSE 'estoque minimo acima do recomendado'
         END AS observacao
     FROM resultado
-    WHERE grupo IN ('EMBALAGENS')
+    WHERE grupo = 'PINTURA'
     ORDER BY descricao
 )
 
 -- Resultado final
 SELECT * FROM querycompleta
+

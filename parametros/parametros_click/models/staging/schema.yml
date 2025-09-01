@@ -13,7 +13,7 @@ models:
         decription: "nomenclatura do produto"
         data_tests: 
           - not_null
-      - name: "data_baixa"
+      - name: "Data_Baixa"
         description: "data da movimentação do item"
         data_tests:
           - not_null
