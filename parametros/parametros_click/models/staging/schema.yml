@@ -23,4 +23,28 @@ models:
           - not_null
       - name: "grupo"
         description: "categoria/grupo que o produto pertence"
+  - name: stg_compras
+    description: "tabela com as ordens de compras pendentes"
+    columns:
+      - name: "numero"
+        description: "numero da ordem de compra"
+      - name: "codigo"
+        description: "codigo do produto"
+      - name: 'descricao'
+        description: descricao do produto contido na ordem de compra"
+      - name: "un"
+        decription: "unidade de medida do produto"
+      - name: "saldo"
+        description: "quantidade pendente na ordem de compra"
+      - name: "preco"
+        description: "preco unitario do produto"
+      - name: "valor_total"
+        description: "valor total do produto sem descontar os impostos"
+      - name: "data_entrega"
+        description: "data de entrega do produto"
+      - name: "razao"
+        description: "razao social do fornecedor"
+      - name: "cod_terceiro"
+        decription: "identificador unico do fornecedor"
+
   

@@ -123,3 +123,29 @@ with exp2:
             df=pd.DataFrame(result.fetchall(), columns=result.keys())
         st.dataframe(df,hide_index=True)
         
+        st.title("Analise compras")       
+
+compras= st.expander("compras")
+#df_instituicao = df.pivot_table(index="codigo", columns="descricao", values="estoque_minimo") 
+
+with compras:
+    Fornecedores, = st.tabs(
+        ['fornecedores']
+    )
+    with Fornecedores:
+            with target_engine.connect() as connection:
+                result = connection.execute(text("""
+                                                SELECT
+                                                    data_entrega,
+                                                    numero_oc,
+                                                    codigo_produto,
+                                                    descricao,
+                                                    check_oc,
+                                                    quantidade,
+                                                    calculo_estoque
+                                                FROM public.marts_analise_compras
+                                                """))
+                df=pd.DataFrame(result.fetchall(), columns=result.keys())
+            st.dataframe(df,hide_index=True)
+            
+        
